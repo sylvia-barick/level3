@@ -95,7 +95,7 @@ To validate the MVP, we onboarded 6 testnet users to verify the end-to-end liqui
 ---
 ## Mobile Responsive UI
 <div align="center">
-  <img src="mobile.png" width="800" alt="mobile">
+  <img src="mobile.jpeg" width="800" alt="mobile">
 </div>
 
 ---
