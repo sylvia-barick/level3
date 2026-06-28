@@ -79,9 +79,23 @@ To validate the MVP, we onboarded 6 testnet users to verify the end-to-end liqui
   6. Tanmay Chakraborty [GCVBGPRU7YSL7NTK4WQ5SRGE4RC5CV7KNYBVJLNPKMMOUQRFPGRZRF2R]
 
 ---
-## 🛡️ On-Chain Proof
+##  On-Chain Proof
 <div align="center">
   <img src="check.png" width="800" alt="On-Chain Proof">
+</div>
+
+---
+---
+##  CI-CD Pipeline
+<div align="center">
+  <img src="ci.png" width="800" alt="ci-cd">
+</div>
+
+---
+---
+## Mobile Responsive UI
+<div align="center">
+  <img src="mobile.png" width="800" alt="mobile">
 </div>
 
 ---
