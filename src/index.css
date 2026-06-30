@@ -1,102 +1,67 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;700&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
   --font-display: "Bebas Neue", ui-sans-serif, system-ui;
   
-  --color-brutal-yellow: #FFDE59;
-  --color-brutal-pink: #FF90E8;
-  --color-brutal-blue: #3B82F6;
-  --color-brutal-green: #00E676;
-  --color-brutal-orange: #FF5E00;
-  --color-brutal-purple: #C084FC;
+  --color-brutal-yellow: #f59e0b;
+  --color-brutal-pink: #f43f5e;
+  --color-brutal-blue: #3b82f6;
+  --color-brutal-green: #10b981;
+  --color-brutal-orange: #f97316;
+  --color-brutal-purple: #8b5cf6;
 }
 
 @layer base {
   body {
-    @apply antialiased text-black bg-[#a6d8f8];
+    @apply antialiased text-white bg-slate-950;
     font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 }
 
 .brutal-border {
-  @apply border-4 border-black;
+  @apply border border-white/15;
 }
 
 .brutal-shadow {
-  @apply shadow-[6px_6px_0px_0px_rgba(0,0,0,1)];
+  @apply shadow-xl shadow-black/30;
 }
 
 .brutal-shadow-lg {
-  @apply shadow-[12px_12px_0px_0px_rgba(0,0,0,1)];
+  @apply shadow-2xl shadow-black/40;
 }
 
 .brutal-card {
-  @apply bg-white border-4 border-black shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] rounded-none;
+  @apply bg-slate-950/45 backdrop-blur-xl border border-white/10 shadow-2xl rounded-2xl relative overflow-hidden transition-all duration-300;
 }
 
 .brutal-btn {
-  @apply border-4 border-black font-black uppercase shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] hover:translate-y-[2px] hover:translate-x-[2px] hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:translate-y-[6px] active:translate-x-[6px] active:shadow-none transition-all;
+  @apply rounded-xl font-bold uppercase tracking-wider bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/35 border-0 hover:translate-y-[-1px] active:translate-y-[1px] transition-all duration-200 cursor-pointer;
 }
 
 .brutal-input {
-  @apply bg-white border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] text-black focus:outline-none focus:ring-0 placeholder-gray-500 font-bold;
+  @apply bg-white/5 border border-white/10 text-white focus:outline-none focus:border-white/30 focus:ring-1 focus:ring-white/20 placeholder-white/30 font-medium rounded-xl px-4 py-3 transition-all duration-200;
 }
 
 .mono-label {
-  @apply font-mono text-xs uppercase tracking-widest text-black font-black bg-white px-2 py-1 border-2 border-black inline-block shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] mb-2;
+  @apply font-mono text-[10px] uppercase tracking-widest text-slate-300 font-bold bg-white/5 px-2 py-1 border border-white/10 rounded-md inline-block mb-2 shadow-sm;
 }
 
 .accent-border {
-  @apply border-l-8 border-brutal-pink;
+  @apply border-l-4 border-brutal-pink;
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-white border-l-4 border-black;
+  @apply bg-transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-brutal-pink border-4 border-black;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-brutal-orange;
-}
-
-@keyframes parallax_fg {
-  0% { background-position: 2765px 100%; }
-  100% { background-position: 550px 100%; }
-}
-
-@keyframes parallax_bike {
-  0% { background-position: -300px 100%; }
-  100% { background-position: 2000px 100%; }
-}
-
-.hero-container {
-  position: fixed;
-  inset: 0;
-  z-index: -10;
-  overflow: hidden;
-  background-color: #a6d8f8;
-}
-
-.parallax-layer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  animation-name: parallax_fg;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  background-repeat: repeat-x;
-  background-position: 0 100%;
+  @apply bg-white/10 rounded-full hover:bg-white/20 transition-colors;
 }
