@@ -30,7 +30,7 @@ To meet the rigorous production standards of the Stellar ecosystem, the protocol
 ---
 
 ## 🔌 Project Links & Registry
-- **Live MVP Demo:** [stellar-yield-rose.vercel.app](https://level3-zeta.vercel.app/)
+- **Live MVP Demo:** [level3-zeta.vercel.app/](https://level3-zeta.vercel.app/)
 - **Video Demonstration:** [Watch on YouTube](https://youtu.be/GPmrRI8RiSo)
 - **GitHub Repository:** [StellarYield Repo](https://github.com/sylvia-barick/level3)
 
