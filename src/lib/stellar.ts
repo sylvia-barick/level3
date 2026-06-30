@@ -1,4 +1,4 @@
-import * as StellarSdk from 'stellar-sdk';
+import * as StellarSdk from '@stellar/stellar-sdk';
 import { isConnected, getAddress, requestAccess, signTransaction } from '@stellar/freighter-api';
 
 export const STELLAR_NETWORK = 'TESTNET';
@@ -203,6 +203,41 @@ export async function getOnChainScore(address: string): Promise<number> {
   }
 }
 
+async function confirmTransaction(hash: string): Promise<string> {
+  console.log(`Polling status for transaction ${hash}...`);
+  let getResponse;
+  const startTime = Date.now();
+  const timeoutMs = 60000; // 60 seconds timeout
+  
+  while (Date.now() - startTime < timeoutMs) {
+    try {
+      getResponse = await rpcServer.getTransaction(hash);
+      
+      if (getResponse.status === "SUCCESS") {
+        console.log(`Transaction ${hash} confirmed successfully.`);
+        return hash;
+      }
+      
+      if (getResponse.status === "FAILED") {
+        console.error(`Transaction ${hash} failed execution on-chain.`);
+        throw new Error(`Transaction failed execution on-chain.`);
+      }
+      
+      console.log(`Transaction status is ${getResponse.status}, retrying...`);
+    } catch (e: any) {
+      if (e.message?.includes("failed execution on-chain")) {
+        throw e;
+      }
+      console.warn("Polling error:", e);
+    }
+    
+    // Wait 1.5 seconds before polling again
+    await new Promise(resolve => setTimeout(resolve, 1500));
+  }
+  
+  throw new Error("Transaction confirmation timed out after 60 seconds.");
+}
+
 export async function supplyFunds(address: string, amount: string) {
   try {
     const account = await server.loadAccount(address);
@@ -237,11 +272,11 @@ export async function supplyFunds(address: string, amount: string) {
     
     const result = await rpcServer.sendTransaction(StellarSdk.TransactionBuilder.fromXDR(xdrToSubmit, StellarSdk.Networks.TESTNET));
 
-    if (result.status !== 'ERROR') {
-      return result.hash;
+    if (result.status === 'ERROR') {
+      throw new Error(`Transaction rejected by network: ${result.status}`);
     }
     
-    throw new Error(`Transaction rejected by network: ${result.status}`);
+    return await confirmTransaction(result.hash);
   } catch (e: any) {
     console.error('Supply error:', e);
     throw e;
@@ -281,10 +316,11 @@ export async function borrowFunds(address: string, amount: string) {
     const xdrToSubmit = typeof signedTx === 'string' ? signedTx : signedTx.signedTxXdr;
     const result = await rpcServer.sendTransaction(StellarSdk.TransactionBuilder.fromXDR(xdrToSubmit, StellarSdk.Networks.TESTNET));
 
-    if (result.status !== 'ERROR') {
-      return result.hash;
+    if (result.status === 'ERROR') {
+      throw new Error(`Transaction rejected: ${result.status}`);
     }
-    throw new Error(`Transaction rejected: ${result.status}`);
+
+    return await confirmTransaction(result.hash);
   } catch (e: any) {
     console.error('Borrow error:', e);
     throw e;
@@ -324,10 +360,11 @@ export async function repayFunds(address: string, amount: string) {
     const xdrToSubmit = typeof signedTx === 'string' ? signedTx : signedTx.signedTxXdr;
     const result = await rpcServer.sendTransaction(StellarSdk.TransactionBuilder.fromXDR(xdrToSubmit, StellarSdk.Networks.TESTNET));
 
-    if (result.status !== 'ERROR') {
-      return result.hash;
+    if (result.status === 'ERROR') {
+      throw new Error(`Transaction rejected: ${result.status}`);
     }
-    throw new Error(`Transaction rejected: ${result.status}`);
+
+    return await confirmTransaction(result.hash);
   } catch (e: any) {
     console.error('Repay error:', e);
     throw e;
