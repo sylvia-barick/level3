@@ -30,9 +30,9 @@ To meet the rigorous production standards of the Stellar ecosystem, the protocol
 ---
 
 ## 🔌 Project Links & Registry
-- **Live MVP Demo:** [stellar-yield-rose.vercel.app](https://stellar-yield-rose.vercel.app/)
+- **Live MVP Demo:** [stellar-yield-rose.vercel.app](https://level3-zeta.vercel.app/)
 - **Video Demonstration:** [Watch on YouTube](https://youtu.be/GPmrRI8RiSo)
-- **GitHub Repository:** [StellarYield Repo](https://github.com/sylvia-barick/StellarYield)
+- **GitHub Repository:** [StellarYield Repo](https://github.com/sylvia-barick/level3)
 
 ### 🏛️ On-Chain Contract Registry (Testnet)
 | Component | Contract ID |
