@@ -1,7 +1,7 @@
 # 🌌 StellarYield: Micro-Lending Protocol
  
 <div align="center">
-  <img src="ui1.png" width="800" alt="StellarYield Logo">
+  <img src="ui.png" width="800" alt="StellarYield Logo">
   
   [![CI Status](https://github.com/sylvia-barick/StellarYield/actions/workflows/stellar-ci.yml/badge.svg)](https://github.com/sylvia-barick/StellarYield/actions)
   [![Vercel Deployment](https://therealsujitk-vercel-badge.vercel.app/?app=stellar-yield-rose)](https://stellar-yield-rose.vercel.app/)
